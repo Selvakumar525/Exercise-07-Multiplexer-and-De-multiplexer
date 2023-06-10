@@ -76,32 +76,69 @@ Developed by: Selva Kumar A
 RegisterNumber: 212222110042 
 */
 ~~~
+### MUX:
+~~~
+module mux(s1,s2,ip,iq,ir,is,y);
+input s1,s2,ip,iq,ir,is;
+output y;
+wire a,b,c,d,e,f;
+assign e = ~s1;
+assign f = ~s2;
+assign a = ip & e & f;
+assign b =  iq & e & s2;
+assign c = ir & s1 & f;
+assign d = is & s1 & s2;
+assign y = a | b | c | d;
+endmodule
+~~~
+### DEMUX:
+~~~
+module demux(Y0,Y1,Y2,Y3,S0,S1,I);
+input S0,S1,I;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+and(Y0,I,S0C,S1C);
+and(Y1,I,S0C,S1);
+and(Y2,I,S0,S1C);
+and(Y3,I,S0,S1);
+endmodule
+~~~
+
+
+
+### OUTPUT:
+### RTL LOGIC:
+### MUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/35e23487-f611-4b04-b58d-d5bacf6cdf42)
+### DEMUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/ac9106ea-ee74-4455-a16d-1758bf713ade)
 
 
 
 
 
 
-### RTL LOGIC  
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS  
+### TIMING DIGRAMS 
+### MUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/c948fd5e-2dce-4c0a-9a28-fcd108e9eb28)
+### DEMUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/5c305c1c-658b-4b73-8256-2878b371445c)
 
 
 
 
 
 ### TRUTH TABLE 
-
+### MUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/a2843877-6e0e-435a-b1ae-803de2ea2145)
+### DEMUX:
+![image](https://github.com/Selvakumar525/Exercise-07-Multiplexer-and-De-multiplexer/assets/120643262/16b40a77-44f9-4a36-9ec1-c64231881e37)
 
 
 
 
 
 ### RESULTS 
+Hence 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
